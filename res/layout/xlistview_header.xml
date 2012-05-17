@@ -2,21 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#ff0000"
     android:gravity="bottom" >
 
     <RelativeLayout
-        android:id="@+id/xlistview_header"
+        android:id="@+id/xlistview_header_content"
         android:layout_width="fill_parent"
         android:layout_height="60dp" >
 
         <LinearLayout
-            android:id="@+id/xlistview_header_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical" android:id="@+id/xlistview_header_text">
 
             <TextView
                 android:id="@+id/xlistview_header_hint_textview"
@@ -44,10 +42,10 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@drawable/xlistview_arrow"
+            android:id="@+id/xlistview_header_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/xlistview_header_content"
+            android:layout_alignLeft="@id/xlistview_header_text"
             android:layout_centerVertical="true"
             android:layout_marginLeft="-35dp"
             android:src="@drawable/xlistview_arrow" />
@@ -56,7 +54,7 @@
             android:id="@+id/xlistview_header_progressbar"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignLeft="@id/xlistview_header_content"
+            android:layout_alignLeft="@id/xlistview_header_text"
             android:layout_centerVertical="true"
             android:layout_marginLeft="-40dp"
             android:visibility="invisible" />
