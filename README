@@ -2,16 +2,3 @@ An ListView support "pull down refresh" and "pull up load" feature.
 
 How to use:
     Just replace ListView by me.maxwin.XListView.
-
-**Screenshots**
-Pull down to refresh:
-
-![Screenshot](https://github.com/Maxwin-z/XListView-Android/blob/master/screenshots/refresh_normal.png)
-![Refresh ready](https://github.com/Maxwin-z/XListView-Android/blob/master/screenshots/refresh_ready.png?raw=true)
-![Refresh loading](https://github.com/Maxwin-z/XListView-Android/blob/master/screenshots/refresh_loading.png?raw=true)
-
-Pull up to load more:
-
-![Load normal](https://github.com/Maxwin-z/XListView-Android/blob/master/screenshots/load_more_normal.png?raw=true)
-![Load ready](https://github.com/Maxwin-z/XListView-Android/blob/master/screenshots/load_more_ready.png?raw=true)
-![Load loading](https://github.com/Maxwin-z/XListView-Android/blob/master/screenshots/load_more_loading.png?raw=true)
