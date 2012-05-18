@@ -1,0 +1,4 @@
+An ListView support "pull down refresh" and "pull up load" feature.
+
+How to use:
+    Just replace ListView by me.maxwin.XListView.
