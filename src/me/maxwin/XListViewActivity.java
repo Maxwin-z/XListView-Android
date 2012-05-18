@@ -39,6 +39,7 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 	private void onLoad() {
 		mListView.stopRefresh();
 		mListView.stopLoadMore();
+		mListView.setRefreshTime("刚刚");
 	}
 	
 	@Override
@@ -52,7 +53,7 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 				mAdapter.notifyDataSetChanged();
 				onLoad();
 			}
-		}, 3000);
+		}, 2000);
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 				mAdapter.notifyDataSetChanged();
 				onLoad();
 			}
-		}, 3000);
+		}, 2000);
 	}
 
 }

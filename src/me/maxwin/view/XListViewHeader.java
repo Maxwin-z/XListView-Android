@@ -1,9 +1,8 @@
 /**
- * @file PullRefreshView.java
- * @package com.tencent.weibu.view
+ * @file XListViewHeader.java
  * @create Apr 18, 2012 5:22:27 PM
- * @author maxiezhang
- * @description TODO
+ * @author Maxwin
+ * @description XListView's header
  */
 package me.maxwin.view;
 
@@ -20,12 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-/**
- * @author maxiezhang
- * 
- */
 public class XListViewHeader extends LinearLayout {
-//	private final static String TAG = "PullRefreshView";
 	private LinearLayout mContainer;
 	private ImageView mArrowImageView;
 	private ProgressBar mProgressBar;
@@ -100,17 +94,17 @@ public class XListViewHeader extends LinearLayout {
 			if (mState == STATE_REFRESHING) {
 				mArrowImageView.clearAnimation();
 			}
-			mHintTextView.setText("下拉载入更多");
+			mHintTextView.setText(R.string.xlistview_header_hint_normal);
 			break;
 		case STATE_READY:
 			if (mState != STATE_READY) {
 				mArrowImageView.clearAnimation();
 				mArrowImageView.startAnimation(mRotateUpAnim);
-				mHintTextView.setText("松开刷新");
+				mHintTextView.setText(R.string.xlistview_header_hint_ready);
 			}
 			break;
 		case STATE_REFRESHING:
-			mHintTextView.setText("正在载入...");
+			mHintTextView.setText(R.string.xlistview_header_hint_loading);
 			break;
 			default:
 		}
@@ -119,7 +113,6 @@ public class XListViewHeader extends LinearLayout {
 	}
 	
 	public void setVisiableHeight(int height) {
-		// Qzlog.d(TAG, "header height:" + height);
 		if (height < 0)
 			height = 0;
 		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContainer

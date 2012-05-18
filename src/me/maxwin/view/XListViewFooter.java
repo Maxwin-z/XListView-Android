@@ -1,9 +1,8 @@
 /**
- * @file LoadMoreView.java
- * @package com.tencent.weibu.view
+ * @file XFooterView.java
  * @create Mar 31, 2012 9:33:43 PM
- * @author maxiezhang
- * @description TODO
+ * @author Maxwin
+ * @description XListView's footer
  */
 package me.maxwin.view;
 
@@ -15,10 +14,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/**
- * @author maxiezhang
- *
- */
 public class XListViewFooter extends LinearLayout {
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_READY = 1;
@@ -41,10 +36,6 @@ public class XListViewFooter extends LinearLayout {
 	}
 
 	
-	/**
-	 * 改变显示状态
-	 * @param state
-	 */
 	public void setState(int state) {
 		mHintView.setVisibility(View.INVISIBLE);
 		mProgressBar.setVisibility(View.INVISIBLE);
