@@ -47,7 +47,8 @@ public class XListView extends ListView implements OnScrollListener {
 	private RelativeLayout mFooterViewContent;
 	private boolean mEnablePullLoad;
 	private boolean mPullLoading;
-
+	private boolean mIsFooterReady = false;
+	
 	// total list items, used to detect is at the bottom of listview.
 	private int mTotalItemCount;
 
@@ -114,8 +115,11 @@ public class XListView extends ListView implements OnScrollListener {
 
 	@Override
 	public void setAdapter(ListAdapter adapter) {
-		// test load more
-		addFooterView(mFooterView);
+		// make sure XListViewFooter is the last footer view, and only add once.
+		if (mIsFooterReady == false) {
+			mIsFooterReady = true;
+			addFooterView(mFooterView);
+		}
 		super.setAdapter(adapter);
 	}
 

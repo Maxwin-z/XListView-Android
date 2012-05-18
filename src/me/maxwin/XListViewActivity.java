@@ -50,7 +50,9 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 				start = ++refreshCnt;
 				items.clear();
 				geneItems();
-				mAdapter.notifyDataSetChanged();
+				// mAdapter.notifyDataSetChanged();
+				mAdapter = new ArrayAdapter<String>(XListViewActivity.this, R.layout.list_item, items);
+				mListView.setAdapter(mAdapter);
 				onLoad();
 			}
 		}, 2000);
