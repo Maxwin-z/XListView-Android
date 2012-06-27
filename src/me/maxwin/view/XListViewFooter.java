@@ -81,6 +81,24 @@ public class XListViewFooter extends LinearLayout {
 		mProgressBar.setVisibility(View.VISIBLE);
 	}
 	
+	/**
+	 * hide footer when disable pull load more
+	 */
+	public void hide() {
+		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mContentView.getLayoutParams();
+		lp.height = 0;
+		mContentView.setLayoutParams(lp);
+	}
+	
+	/**
+	 * show footer
+	 */
+	public void show() {
+		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mContentView.getLayoutParams();
+		lp.height = LayoutParams.WRAP_CONTENT;
+		mContentView.setLayoutParams(lp);
+	}
+	
 	private void initView(Context context) {
 		mContext = context;
 		LinearLayout moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.xlistview_footer, null);

@@ -44,7 +44,6 @@ public class XListView extends ListView implements OnScrollListener {
 
 	// -- footer view
 	private XListViewFooter mFooterView;
-	private RelativeLayout mFooterViewContent;
 	private boolean mEnablePullLoad;
 	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
@@ -98,8 +97,6 @@ public class XListView extends ListView implements OnScrollListener {
 
 		// init footer view
 		mFooterView = new XListViewFooter(context);
-		mFooterViewContent = (RelativeLayout) mFooterView
-				.findViewById(R.id.xlistview_footer_content);
 
 		// init header height
 		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -133,7 +130,7 @@ public class XListView extends ListView implements OnScrollListener {
 		if (!mEnablePullRefresh) { // disable, hide the content
 			mHeaderViewContent.setVisibility(View.INVISIBLE);
 		} else {
-			mFooterViewContent.setVisibility(View.VISIBLE);
+			mHeaderViewContent.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -145,11 +142,11 @@ public class XListView extends ListView implements OnScrollListener {
 	public void setPullLoadEnable(boolean enable) {
 		mEnablePullLoad = enable;
 		if (!mEnablePullLoad) {
-			mFooterViewContent.setVisibility(View.INVISIBLE);
+			mFooterView.hide();
 			mFooterView.setOnClickListener(null);
 		} else {
 			mPullLoading = false;
-			mFooterViewContent.setVisibility(View.VISIBLE);
+			mFooterView.show();
 			mFooterView.setState(XListViewFooter.STATE_NORMAL);
 			// both "pull up" and "click" will invoke load more.
 			mFooterView.setOnClickListener(new OnClickListener() {
