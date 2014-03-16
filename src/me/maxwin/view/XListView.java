@@ -275,6 +275,11 @@ public class XListView extends ListView implements OnScrollListener {
 			break;
 		case MotionEvent.ACTION_MOVE:
 			final float deltaY = ev.getRawY() - mLastY;
+
+			if (Math.abs(deltaY) < 10) {
+				return super.onTouchEvent(ev);
+			}
+			
 			mLastY = ev.getRawY();
 			if (getFirstVisiblePosition() == 0
 					&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
@@ -303,7 +308,8 @@ public class XListView extends ListView implements OnScrollListener {
 			} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
 				// invoke load more.
 				if (mEnablePullLoad
-						&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+						&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA
+						&& !mPullLoading) {
 					startLoadMore();
 				}
 				resetFooterHeight();
