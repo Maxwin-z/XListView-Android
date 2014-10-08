@@ -196,9 +196,9 @@ public class XListView extends ListView implements OnScrollListener {
 
 	private void updateHeaderHeight(float delta) {
 		mHeaderView.setVisibleHeight((int) delta
-				+ mHeaderView.getVisiableHeight());
+				+ mHeaderView.getVisibleHeight());
 		if (mEnablePullRefresh && !mPullRefreshing) { // 未处于刷新状态，更新箭头
-			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+			if (mHeaderView.getVisibleHeight() > mHeaderViewHeight) {
 				mHeaderView.setState(XListViewHeader.STATE_READY);
 			} else {
 				mHeaderView.setState(XListViewHeader.STATE_NORMAL);
@@ -211,7 +211,7 @@ public class XListView extends ListView implements OnScrollListener {
 	 * reset header view's height.
 	 */
 	private void resetHeaderHeight() {
-		int height = mHeaderView.getVisiableHeight();
+		int height = mHeaderView.getVisibleHeight();
 		if (height == 0) // not visible.
 			return;
 		// refreshing and header isn't shown fully. do nothing.
@@ -277,7 +277,7 @@ public class XListView extends ListView implements OnScrollListener {
 			final float deltaY = ev.getRawY() - mLastY;
 			mLastY = ev.getRawY();
 			if (getFirstVisiblePosition() == 0
-					&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
+					&& (mHeaderView.getVisibleHeight() > 0 || deltaY > 0)) {
 				// the first item is showing, header has shown or pull down.
 				updateHeaderHeight(deltaY / OFFSET_RADIO);
 				invokeOnScrolling();
@@ -292,7 +292,7 @@ public class XListView extends ListView implements OnScrollListener {
 			if (getFirstVisiblePosition() == 0) {
 				// invoke refresh
 				if (mEnablePullRefresh
-						&& mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+						&& mHeaderView.getVisibleHeight() > mHeaderViewHeight) {
 					mPullRefreshing = true;
 					mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
 					if (mListViewListener != null) {
