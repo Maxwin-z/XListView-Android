@@ -195,7 +195,7 @@ public class XListView extends ListView implements OnScrollListener {
 	}
 
 	private void updateHeaderHeight(float delta) {
-		mHeaderView.setVisiableHeight((int) delta
+		mHeaderView.setVisibleHeight((int) delta
 				+ mHeaderView.getVisiableHeight());
 		if (mEnablePullRefresh && !mPullRefreshing) { // 未处于刷新状态，更新箭头
 			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
@@ -318,7 +318,7 @@ public class XListView extends ListView implements OnScrollListener {
 	public void computeScroll() {
 		if (mScroller.computeScrollOffset()) {
 			if (mScrollBack == SCROLLBACK_HEADER) {
-				mHeaderView.setVisiableHeight(mScroller.getCurrY());
+				mHeaderView.setVisibleHeight(mScroller.getCurrY());
 			} else {
 				mFooterView.setBottomMargin(mScroller.getCurrY());
 			}
