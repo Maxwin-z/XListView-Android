@@ -144,10 +144,14 @@ public class XListView extends ListView implements OnScrollListener {
 		if (!mEnablePullLoad) {
 			mFooterView.hide();
 			mFooterView.setOnClickListener(null);
+			//make sure "pull up" don't show a line in bottom when listview with one page 
+			setFooterDividersEnabled(false);
 		} else {
 			mPullLoading = false;
 			mFooterView.show();
 			mFooterView.setState(XListViewFooter.STATE_NORMAL);
+			//make sure "pull up" don't show a line in bottom when listview with one page  
+			setFooterDividersEnabled(true);
 			// both "pull up" and "click" will invoke load more.
 			mFooterView.setOnClickListener(new OnClickListener() {
 				@Override
