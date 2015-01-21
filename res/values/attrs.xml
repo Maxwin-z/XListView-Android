@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="XListView">
+        <attr name="pull_to_bottom_refresh" format="boolean" />
+        <attr name="pull_to_top_load_more" format="boolean" />
+    </declare-styleable>
+
+</resources>
