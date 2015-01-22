@@ -3,6 +3,15 @@ An ListView support "pull down refresh" and "pull up load" feature.
 How to use:
     Just replace ListView by me.maxwin.XListView.
 
-Screenshots see the Wiki plz.
+ChangeLogs:
+1, the attribute of 'pull_to_bottom_refresh' was added.
+2, the attribute of 'pull_to_top_load_more' was added.
 
-已停止维护 by maxwin 2014
+so, you could set 'setPullRefreshEnable(boolean)' and 'setPullLoadEnable(boolean)' by layout files not by codes.
+
+
+Feature needed:
+
+1, when the height of XListView's content is lower than the height of XListView, the footerview need to be gone/invisible automatically.
+
+when I was available and found a solution of it, I would complete this. Wait, please.

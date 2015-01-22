@@ -112,7 +112,7 @@ public class XListViewHeader extends LinearLayout {
 		mState = state;
 	}
 	
-	public void setVisiableHeight(int height) {
+	public void setVisibleHeight(int height) {
 		if (height < 0)
 			height = 0;
 		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContainer
@@ -121,7 +121,7 @@ public class XListViewHeader extends LinearLayout {
 		mContainer.setLayoutParams(lp);
 	}
 
-	public int getVisiableHeight() {
+	public int getVisibleHeight() {
 		return mContainer.getHeight();
 	}
 
