@@ -131,10 +131,7 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 		setPullLoadEnable(mEnablePullLoad);
 		setPullRefreshEnable(mEnablePullRefresh);
-		setRefreshTime(sharedPref.getString(
-				"last_update_time",
-				DateFormat.format(DATE_FORMAT_PARTTEN,
-						SystemClock.currentThreadTimeMillis()).toString()));
+		setRefreshTime(sharedPref.getString("last_update_time", DateFormat.format(DATE_FORMAT_PARTTEN, SystemClock.currentThreadTimeMillis()).toString()));
 	}
 
 	@Override
@@ -212,16 +209,13 @@ public class XListView extends ListView implements OnScrollListener {
 	 */
 	public void setRefreshTime(CharSequence time) {
 		if (time == null || "".equals(time)) {
-			String lastUpdateTime = DateFormat.format(DATE_FORMAT_PARTTEN,
-					SystemClock.currentThreadTimeMillis()).toString();
+			String lastUpdateTime = DateFormat.format(DATE_FORMAT_PARTTEN, SystemClock.currentThreadTimeMillis()).toString();
 			mHeaderTimeView.setText(lastUpdateTime);
-			sharedPref.edit().putString("last_update_time", lastUpdateTime)
-					.commit();
+			sharedPref.edit().putString("last_update_time", lastUpdateTime).commit();
 			return;
 		}
 		mHeaderTimeView.setText(time);
-		sharedPref.edit().putString("last_update_time", time.toString())
-				.commit();
+		sharedPref.edit().putString("last_update_time", time.toString()).commit();
 	}
 
 	private void invokeOnScrolling() {
