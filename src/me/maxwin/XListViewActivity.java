@@ -7,6 +7,7 @@ import me.maxwin.view.XListView.IXListViewListener;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.format.DateFormat;
 import android.widget.ArrayAdapter;
 
 public class XListViewActivity extends Activity implements IXListViewListener {
@@ -16,6 +17,7 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 	private Handler mHandler;
 	private int start = 0;
 	private static int refreshCnt = 0;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,17 +25,16 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 		setContentView(R.layout.main);
 		geneItems();
 		mListView = (XListView) findViewById(R.id.xListView);
-		mListView.setPullLoadEnable(true);
 		mAdapter = new ArrayAdapter<String>(this, R.layout.list_item, items);
 		mListView.setAdapter(mAdapter);
-//		mListView.setPullLoadEnable(false);
-//		mListView.setPullRefreshEnable(false);
+		mListView.setPullLoadEnable(true);
+		mListView.setPullRefreshEnable(true);
 		mListView.setXListViewListener(this);
 		mHandler = new Handler();
 	}
 
 	private void geneItems() {
-		for (int i = 0; i != 20; ++i) {
+		for (int i = 0; i != 5; ++i) {
 			items.add("refresh cnt " + (++start));
 		}
 	}
@@ -41,9 +42,10 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 	private void onLoad() {
 		mListView.stopRefresh();
 		mListView.stopLoadMore();
-		mListView.setRefreshTime("刚刚");
+		mListView.setRefreshTime(DateFormat.format(
+				XListView.DATE_FORMAT_PARTTEN, System.currentTimeMillis()));
 	}
-	
+
 	@Override
 	public void onRefresh() {
 		mHandler.postDelayed(new Runnable() {
@@ -53,7 +55,8 @@ public class XListViewActivity extends Activity implements IXListViewListener {
 				items.clear();
 				geneItems();
 				// mAdapter.notifyDataSetChanged();
-				mAdapter = new ArrayAdapter<String>(XListViewActivity.this, R.layout.list_item, items);
+				mAdapter = new ArrayAdapter<String>(XListViewActivity.this,
+						R.layout.list_item, items);
 				mListView.setAdapter(mAdapter);
 				onLoad();
 			}
