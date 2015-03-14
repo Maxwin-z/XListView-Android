@@ -122,7 +122,7 @@ public class XListViewHeader extends LinearLayout {
 	}
 
 	public int getVisiableHeight() {
-		return mContainer.getHeight();
+		return mContainer.getLayoutParams().height;
 	}
 
 }
