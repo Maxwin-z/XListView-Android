@@ -279,20 +279,38 @@ public class XListView extends ListView implements OnScrollListener {
 			break;
 		case MotionEvent.ACTION_MOVE:
 			final float deltaY = ev.getRawY() - mLastY;
+
+			// 防止手指抖动
+			// prevent shaking of finger
+			if (Math.abs(deltaY) <= 5) {
+				break;
+			}
+
 			mLastY = ev.getRawY();
 			if (getFirstVisiblePosition() == 0
 					&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
 				// the first item is showing, header has shown or pull down.
 				updateHeaderHeight(deltaY / OFFSET_RADIO);
 				invokeOnScrolling();
+
+				resetFooterHeight();
+				mFooterView.setState(XListViewFooter.STATE_NORMAL);
 			} else if (getLastVisiblePosition() == mTotalItemCount - 1
 					&& (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
 				// last item, already pulled up or want to pull up.
 				updateFooterHeight(-deltaY / OFFSET_RADIO);
+
+				resetHeaderHeight();
+				mHeaderView.setState(XListViewHeader.STATE_NORMAL);
 			}
 			break;
 		default:
 			mLastY = -1; // reset
+
+			// 用来控制 下拉刷新操作 是否覆盖了 加载更多操作
+			// to control that whether the action of pullDownToRefresh overlap the action of pullUpToLoadMore
+			boolean dropRefreshOverrideLoadMore = false;
+
 			if (getFirstVisiblePosition() == 0) {
 				// invoke refresh
 				if (mEnablePullRefresh
@@ -302,16 +320,27 @@ public class XListView extends ListView implements OnScrollListener {
 					if (mListViewListener != null) {
 						mListViewListener.onRefresh();
 					}
+
+					dropRefreshOverrideLoadMore = true;
 				}
+
 				resetHeaderHeight();
-			} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
+				resetFooterHeight();
+				mFooterView.setState(XListViewFooter.STATE_NORMAL);
+			}
+
+			// else if (getLastVisiblePosition() == mTotalItemCount - 1) {
+			if (getLastVisiblePosition() == mTotalItemCount - 1 && !dropRefreshOverrideLoadMore) {
 				// invoke load more.
 				if (mEnablePullLoad
 				    && mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA
 				    && !mPullLoading) {
 					startLoadMore();
 				}
+
 				resetFooterHeight();
+				resetHeaderHeight();
+				mHeaderView.setState(XListViewHeader.STATE_NORMAL);
 			}
 			break;
 		}
