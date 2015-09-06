@@ -296,7 +296,7 @@ public class XListView extends ListView implements OnScrollListener {
 			if (getFirstVisiblePosition() == 0) {
 				// invoke refresh
 				if (mEnablePullRefresh
-						&& mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+						&& mHeaderView.getVisiableHeight() > mHeaderViewHeight&&!mPullRefreshing) {
 					mPullRefreshing = true;
 					mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
 					if (mListViewListener != null) {
